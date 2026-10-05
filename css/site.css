@@ -1,0 +1,485 @@
+/* ==========================================================================
+   SITE STYLES
+   --------------------------------------------------------------------------
+   Layout, typography and components. Theme-agnostic by construction:
+   every colour, font, radius and shadow reads from a var() defined in
+   tokens.css. If you are about to type a hex value in this file, stop and
+   add a token instead.
+   ========================================================================== */
+
+
+/* --- Reset ------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  line-height: var(--display-leading);
+  margin: 0;
+  text-wrap: balance;
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+a { color: var(--accent); text-underline-offset: 0.18em; }
+a:hover { color: var(--accent-hover); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+
+/* --- Layout ------------------------------------------------------------ */
+
+.wrap {
+  width: 100%;
+  max-width: 44rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.wrap--wide { max-width: 56rem; }
+
+.section {
+  padding-block: clamp(2.75rem, 7vw, 4.5rem);
+  border-top: 1px solid var(--line);
+}
+
+.section--plain { border-top: 0; }
+
+.section--sunken {
+  background: var(--bg-sunken);
+  border-top: 1px solid var(--line);
+}
+
+.stack > * + * { margin-top: 1rem; }
+.stack-lg > * + * { margin-top: 1.75rem; }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+
+/* --- Type scale -------------------------------------------------------- */
+
+.h1 { font-size: clamp(2rem, 6.5vw, 3rem); }
+.h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+.h3 { font-size: clamp(1.125rem, 2.6vw, 1.3125rem); }
+
+.lead {
+  font-size: clamp(1.125rem, 2.6vw, 1.3125rem);
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.muted { color: var(--text-muted); }
+
+.small { font-size: 0.9375rem; line-height: 1.6; }
+
+
+/* --- Header ------------------------------------------------------------ */
+
+.site-header {
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: 1.0625rem;
+  letter-spacing: var(--display-tracking);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.wordmark span {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.9375rem;
+}
+
+.site-nav a { color: var(--text-muted); text-decoration: none; }
+.site-nav a:hover { color: var(--accent); text-decoration: underline; }
+
+
+/* --- Hero -------------------------------------------------------------- */
+
+.hero { padding-block: clamp(2.5rem, 8vw, 5rem) clamp(2rem, 5vw, 3rem); }
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+
+/* --- Buttons ----------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.375rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 550;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+              color 0.15s ease, transform 0.15s ease;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
+.btn--primary:hover {
+  background: var(--accent-hover);
+  color: var(--text-on-accent);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+.btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+/* --- Availability block ------------------------------------------------
+   The signature element. Sander already says this on the phone:
+   daytime is quick, evenings run two to three weeks. Nothing on his
+   current site says it.
+   ----------------------------------------------------------------------- */
+
+.availability {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 34rem) {
+  .availability { grid-template-columns: 1fr 1fr; }
+}
+
+.slot {
+  padding: 1.125rem 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+}
+
+.slot__when {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.slot__wait {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: 1.25rem;
+  letter-spacing: var(--display-tracking);
+  margin-top: 0.35rem;
+}
+
+.slot--open  { background: var(--signal-open-bg); border-color: transparent; }
+.slot--open  .slot__wait { color: var(--signal-open); }
+.slot--open  .slot__when { color: var(--signal-open); opacity: 0.85; }
+
+.slot--wait  { background: var(--signal-wait-bg); border-color: transparent; }
+.slot--wait  .slot__wait { color: var(--signal-wait); }
+.slot--wait  .slot__when { color: var(--signal-wait); opacity: 0.85; }
+
+
+/* --- Definition rows (practical info) ---------------------------------- */
+
+.rows { margin: 0; }
+
+.rows__row {
+  display: grid;
+  gap: 0.15rem 1.5rem;
+  padding-block: 0.875rem;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 34rem) {
+  .rows__row { grid-template-columns: 9.5rem 1fr; gap: 1.5rem; }
+}
+
+.rows__row:first-child { border-top: 1px solid var(--line); }
+
+.rows__key {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+
+.rows__val { margin: 0; }
+
+
+/* --- Callout ----------------------------------------------------------- */
+
+.callout {
+  padding: 1.25rem 1.375rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  background: var(--bg-raised);
+}
+
+.callout__title {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: 1.0625rem;
+  letter-spacing: var(--display-tracking);
+  margin-bottom: 0.4rem;
+}
+
+
+/* --- GP band ------------------------------------------------------------
+   Addressed to referring doctors, not patients. Visually separated on
+   purpose: different audience, different register.
+   ----------------------------------------------------------------------- */
+
+.gp-band {
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+  padding-block: clamp(2.25rem, 6vw, 3.25rem);
+}
+
+.gp-band .eyebrow { color: var(--text-inverse); opacity: 0.6; }
+.gp-band h2 { color: var(--text-inverse); }
+.gp-band p { color: var(--text-inverse); opacity: 0.82; }
+
+.gp-band a.btn--ghost {
+  color: var(--text-inverse);
+  border-color: var(--text-inverse);
+  opacity: 0.9;
+}
+.gp-band a.btn--ghost:hover {
+  background: var(--text-inverse);
+  color: var(--bg-inverse);
+  opacity: 1;
+}
+
+
+/* --- Checklist (GP page) ----------------------------------------------- */
+
+.checklist { list-style: none; margin: 0; padding: 0; }
+
+.checklist li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.checklist--warn li::before { background: var(--signal-wait); }
+
+
+/* --- Footer ------------------------------------------------------------ */
+
+.site-footer {
+  padding-block: 2.5rem 3.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+
+.site-footer a { color: var(--text-muted); }
+.site-footer a:hover { color: var(--accent); }
+
+.footer-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 34rem) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+
+/* --- Review bar ---------------------------------------------------------
+   TEMPORARY. Scaffolding for choosing a direction, not part of the site.
+   Set REVIEW_MODE = false in js/theme.js to remove it entirely.
+   Deliberately styled as chrome so nobody mistakes it for the design.
+   ----------------------------------------------------------------------- */
+
+.review-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3125rem;
+  border-radius: 999px;
+  background: #1C1C1E;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18),
+              0 16px 40px rgba(0, 0, 0, 0.22);
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  max-width: calc(100vw - 2rem);
+}
+
+.review-bar__label {
+  padding-inline: 0.75rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+}
+
+@media (max-width: 28rem) {
+  .review-bar__label { display: none; }
+}
+
+.review-bar__btn {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0.5rem 0.9375rem;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.62);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 550;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.review-bar__btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.review-bar__btn[aria-pressed="true"] {
+  background: #fff;
+  color: #1C1C1E;
+}
+
+.review-bar__btn small {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 450;
+  opacity: 0.6;
+  margin-top: 0.05rem;
+}
+
+.review-bar__key {
+  padding-inline: 0.5rem 0.75rem;
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+}
+
+@media (max-width: 34rem) {
+  .review-bar__key { display: none; }
+}
+
+
+/* --- Content flags ------------------------------------------------------
+   Marks copy that is unverified. Remove the class once confirmed.
+   ----------------------------------------------------------------------- */
+
+.todo {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 196, 0, 0.18),
+    rgba(255, 196, 0, 0.18) 6px,
+    rgba(255, 196, 0, 0.3) 6px,
+    rgba(255, 196, 0, 0.3) 12px
+  );
+  border-bottom: 1px dashed var(--line-strong);
+  padding-inline: 0.15em;
+}
+
+body[data-flags="off"] .todo {
+  background: none;
+  border-bottom: 0;
+  padding-inline: 0;
+}
+
+
+/* --- Motion ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

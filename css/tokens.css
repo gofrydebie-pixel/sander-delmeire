@@ -1,0 +1,137 @@
+/* ==========================================================================
+   THEME TOKENS
+   --------------------------------------------------------------------------
+   Two design directions for Sander to choose between.
+
+   HARD RULE: this is the only file in the project allowed to contain a raw
+   colour, font-family, radius or shadow value. Everything in site.css reads
+   from these variables. That is what makes switching directions a one-line
+   change and deleting the loser a five-minute job.
+
+   TO ADD A DIRECTION
+     1. Copy a [data-theme="..."] block below, rename it
+     2. Add it to THEMES in js/theme.js
+     3. Add its fonts to the <link> tags in both HTML files
+
+   TO DELETE A DIRECTION once Sander picks
+     1. Delete its block here
+     2. Remove it from THEMES in js/theme.js
+     3. Remove its fonts from the <link> tags
+     4. Set REVIEW_MODE = false in js/theme.js to hide the toggle bar
+     Nothing in site.css changes.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   DIRECTION A — "Klei"
+   Warm, tactile, hand-made. Leans into the craftsman identity: he works
+   alone, with his hands, one person at a time. Feels like a person rather
+   than an institution.
+   -------------------------------------------------------------------------- */
+
+:root,
+[data-theme="klei"] {
+  --theme-label: "Klei";
+
+  /* Surfaces */
+  --bg:            #FBF7F2;
+  --bg-raised:     #FFFFFF;
+  --bg-sunken:     #F3EBE1;
+  --bg-inverse:    #2A2320;
+
+  /* Text */
+  --text:          #2A2320;
+  --text-muted:    #6B5D54;
+  --text-inverse:  #FBF7F2;
+  --text-on-accent:#FFFFFF;
+
+  /* Accent */
+  --accent:        #A9512F;
+  --accent-hover:  #8C4026;
+  --accent-soft:   #F0DDD4;
+
+  /* Lines */
+  --line:          #E4D7C9;
+  --line-strong:   #C9B6A2;
+
+  /* Signal colours, used by the availability block */
+  --signal-open:   #4F6F52;
+  --signal-wait:   #96682F;
+  --signal-open-bg:#E6EDE5;
+  --signal-wait-bg:#F5E9D8;
+
+  /* Type */
+  --font-display:  "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body:     "Inter", system-ui, -apple-system, sans-serif;
+  --display-weight: 600;
+  --display-tracking: -0.015em;
+  --display-leading: 1.12;
+
+  /* Shape */
+  --radius:        10px;
+  --radius-lg:     18px;
+  --radius-pill:   999px;
+
+  /* Depth */
+  --shadow-sm:     0 1px 2px rgba(42, 35, 32, 0.06),
+                   0 2px 8px rgba(42, 35, 32, 0.04);
+  --shadow-md:     0 2px 4px rgba(42, 35, 32, 0.06),
+                   0 12px 28px rgba(42, 35, 32, 0.08);
+}
+
+
+/* --------------------------------------------------------------------------
+   DIRECTION B — "Praktijk"
+   Cool, quiet, credible. Leans into the medical-referral side: his patients
+   come through huisartsen, and he writes them proper reports. Feels like a
+   competent clinician rather than a wellness practice.
+   -------------------------------------------------------------------------- */
+
+[data-theme="praktijk"] {
+  --theme-label: "Praktijk";
+
+  /* Surfaces */
+  --bg:            #FAFBFC;
+  --bg-raised:     #FFFFFF;
+  --bg-sunken:     #EFF3F5;
+  --bg-inverse:    #16222B;
+
+  /* Text */
+  --text:          #16222B;
+  --text-muted:    #5A6B75;
+  --text-inverse:  #FAFBFC;
+  --text-on-accent:#FFFFFF;
+
+  /* Accent */
+  --accent:        #2C6E78;
+  --accent-hover:  #1F545C;
+  --accent-soft:   #DCEBED;
+
+  /* Lines */
+  --line:          #DCE4E8;
+  --line-strong:   #B6C4CC;
+
+  /* Signal colours */
+  --signal-open:   #2F6B4F;
+  --signal-wait:   #7E5A1C;
+  --signal-open-bg:#E2EFE8;
+  --signal-wait-bg:#F4EBDA;
+
+  /* Type */
+  --font-display:  "Inter", system-ui, -apple-system, sans-serif;
+  --font-body:     "Inter", system-ui, -apple-system, sans-serif;
+  --display-weight: 650;
+  --display-tracking: -0.03em;
+  --display-leading: 1.08;
+
+  /* Shape */
+  --radius:        6px;
+  --radius-lg:     10px;
+  --radius-pill:   999px;
+
+  /* Depth */
+  --shadow-sm:     0 1px 2px rgba(22, 34, 43, 0.06),
+                   0 2px 8px rgba(22, 34, 43, 0.04);
+  --shadow-md:     0 2px 4px rgba(22, 34, 43, 0.05),
+                   0 12px 28px rgba(22, 34, 43, 0.07);
+}
