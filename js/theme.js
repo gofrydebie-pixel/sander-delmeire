@@ -5,8 +5,8 @@
    site reads from tokens.css, so that one attribute changes the whole
    design direction.
 
-   The review bar is temporary scaffolding so Sander can compare directions.
-   Set REVIEW_MODE to false to remove it and ship a single direction.
+   The switch in the header is temporary scaffolding so Sander can compare
+   directions. Set REVIEW_MODE to false to remove it and ship one direction.
    ========================================================================== */
 
 (function () {
@@ -14,7 +14,7 @@
 
   /* --- Configuration --------------------------------------------------- */
 
-  var REVIEW_MODE = true;   // false hides the toggle bar entirely
+  var REVIEW_MODE = true;   // false hides the theme switch entirely
   var SHOW_FLAGS  = true;   // false hides the yellow unverified-copy markers
 
   var THEMES = [
@@ -71,42 +71,33 @@
   }
 
 
-  /* --- Review bar ------------------------------------------------------ */
+  /* --- Theme switch (in the header) ---------------------------------- */
 
   if (!REVIEW_MODE) return;
   if (new URLSearchParams(location.search).get('review') === '0') return;
 
-  var bar = document.createElement('div');
-  bar.className = 'review-bar';
-  bar.setAttribute('role', 'group');
-  bar.setAttribute('aria-label', 'Ontwerprichting kiezen');
+  var header = document.querySelector('.site-header__inner');
+  if (!header) return;
 
-  var label = document.createElement('span');
-  label.className = 'review-bar__label';
-  label.textContent = 'Richting';
-  bar.appendChild(label);
+  var bar = document.createElement('div');
+  bar.className = 'theme-switch';
+  bar.setAttribute('role', 'group');
+  bar.setAttribute('aria-label', 'Ontwerp kiezen');
+  bar.title = 'Ontwerp wisselen (toets T)';
 
   THEMES.forEach(function (t) {
     var btn = document.createElement('button');
     btn.type = 'button';
-    btn.className = 'review-bar__btn';
+    btn.className = 'theme-switch__btn';
     btn.dataset.themeBtn = t.id;
+    btn.title = t.note;
     btn.setAttribute('aria-pressed', String(t.id === current()));
-    btn.innerHTML = '';
-    btn.appendChild(document.createTextNode(t.label));
-    var note = document.createElement('small');
-    note.textContent = t.note;
-    btn.appendChild(note);
+    btn.textContent = t.label;
     btn.addEventListener('click', function () { apply(t.id); });
     bar.appendChild(btn);
   });
 
-  var hint = document.createElement('span');
-  hint.className = 'review-bar__key';
-  hint.textContent = 'of toets T';
-  bar.appendChild(hint);
-
-  document.body.appendChild(bar);
+  header.appendChild(bar);
 
   document.addEventListener('keydown', function (e) {
     if (e.key !== 't' && e.key !== 'T') return;
