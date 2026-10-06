@@ -8,6 +8,7 @@
 <meta name="description" content="Informatie voor huisartsen: waarvoor u kan doorverwijzen, wanneer ik terugverwijs en wat u van mij terugkrijgt.">
 
 <script>
+  document.documentElement.classList.add('js');
   (function () {
     try {
       var t = localStorage.getItem('sd-theme');
@@ -33,11 +34,16 @@
       Sander Delmeire
       <span>Osteopaat · Rollegem</span>
     </a>
-    <nav class="site-nav">
-      <a href="index.html">Voor patiënten</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a class="btn btn--primary header-cta" href="tel:+32494034857">0494 03 48 57</a>
+    <div class="site-menu" id="site-menu">
+      <nav class="site-nav">
+        <a href="index.html">Voor patiënten</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn--primary header-cta" href="tel:+32494034857">0494 03 48 57</a>
+    </div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -154,5 +160,6 @@
 </footer>
 
 <script src="js/theme.js"></script>
+<script src="js/nav.js"></script>
 </body>
 </html>

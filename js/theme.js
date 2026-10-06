@@ -97,7 +97,8 @@
     bar.appendChild(btn);
   });
 
-  header.appendChild(bar);
+  // Before the mobile menu button, so the switch stays outside the menu
+  header.insertBefore(bar, header.querySelector('.nav-toggle'));
 
   document.addEventListener('keydown', function (e) {
     if (e.key !== 't' && e.key !== 'T') return;

@@ -9,6 +9,7 @@
 
 <!-- Set the theme before first paint so there is no flash -->
 <script>
+  document.documentElement.classList.add('js');
   (function () {
     try {
       var t = localStorage.getItem('sd-theme');
@@ -35,13 +36,18 @@
       Sander Delmeire
       <span>Osteopaat · Rollegem</span>
     </a>
-    <nav class="site-nav">
-      <a href="#voor-wie">Voor wie</a>
-      <a href="#over-mij">Over mij</a>
-      <a href="voor-huisartsen.html">Voor huisartsen</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a class="btn btn--primary header-cta" href="https://app.acuityscheduling.com/schedule.php?owner=20171099" target="_blank" rel="noopener">Afspraak maken</a>
+    <div class="site-menu" id="site-menu">
+      <nav class="site-nav">
+        <a href="#voor-wie">Voor wie</a>
+        <a href="#over-mij">Over mij</a>
+        <a href="voor-huisartsen.html">Voor huisartsen</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn--primary header-cta" href="https://app.acuityscheduling.com/schedule.php?owner=20171099" target="_blank" rel="noopener">Afspraak maken</a>
+    </div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -265,5 +271,6 @@
 </footer>
 
 <script src="js/theme.js"></script>
+<script src="js/nav.js"></script>
 </body>
 </html>
